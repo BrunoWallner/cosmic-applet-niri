@@ -1,5 +1,5 @@
-name := 'cosmic-applet-template'
-export APPID := 'com.example.CosmicAppletTemplate'
+name := 'cosmic-applets-niri'
+export APPID := 'com.niri.applets'
 
 rootdir := ''
 prefix := '/usr'
@@ -14,9 +14,9 @@ bin-src := 'target' / 'release' / name
 bin-dst := base-dir / 'bin' / name
 flatpak-bin-dst := flatpak-base-dir / 'bin' / name
 
-desktop := APPID + '.desktop'
-desktop-src := 'res' / desktop
-desktop-dst := clean(rootdir / prefix) / 'share' / 'applications' / desktop
+# desktop := APPID + '.desktop'
+# desktop-src := 'res' / desktop
+desktop-dst := clean(rootdir / prefix) / 'share' / 'applications'
 
 metainfo := APPID + '.metainfo.xml'
 metainfo-src := 'res' / metainfo
@@ -64,23 +64,22 @@ dev *args:
 run *args:
     env RUST_LOG=cosmic_tasks=info RUST_BACKTRACE=full cargo run --release {{args}}
 
-# Installs files
-install:
-    install -Dm0755 {{bin-src}} {{bin-dst}}
-    install -Dm0644 {{desktop-src}} {{desktop-dst}}
-    install -Dm0644 {{metainfo-src}} {{metainfo-dst}}
-    for size in `ls {{icons-src}}`; do \
-        install -Dm0644 "{{icons-src}}/$size/apps/{{APPID}}.svg" "{{icons-dst}}/$size/apps/{{APPID}}.svg"; \
-    done
+_install_desktop id:
+    install -Dm0644 'res'/{{id}}'.desktop' {{desktop-dst}}/{{id}}'.desktop'
 
 # Installs files
-flatpak:
-    install -Dm0755 {{bin-src}} {{flatpak-bin-dst}}
-    install -Dm0644 {{desktop-src}} {{desktop-dst}}
+install: (_install_desktop 'com.niri.workspaces')
+    install -Dm0755 {{bin-src}} {{bin-dst}}
     install -Dm0644 {{metainfo-src}} {{metainfo-dst}}
-    for size in `ls {{icons-src}}`; do \
-        install -Dm0644 "{{icons-src}}/$size/apps/{{APPID}}.svg" "{{icons-dst}}/$size/apps/{{APPID}}.svg"; \
-    done
+
+# # Installs files
+# flatpak:
+#     install -Dm0755 {{bin-src}} {{flatpak-bin-dst}}
+#     # install -Dm0644 {{desktop-src}} {{desktop-dst}}
+#     install -Dm0644 {{metainfo-src}} {{metainfo-dst}}
+#     for size in `ls {{icons-src}}`; do \
+#         install -Dm0644 "{{icons-src}}/$size/apps/{{APPID}}.svg" "{{icons-dst}}/$size/apps/{{APPID}}.svg"; \
+#     done
 
 # Uninstalls installed files
 uninstall:

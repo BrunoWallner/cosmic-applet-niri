@@ -1,6 +1,6 @@
 [Desktop Entry]
-Name=COSMIC Applet Template
-Exec=cosmic-applet-template %F
+Name=Niri Workspaces
+Exec=cosmic-applets-niri %F
 Terminal=false
 Type=Application
 StartupNotify=true
