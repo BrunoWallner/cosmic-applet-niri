@@ -1,10 +1,10 @@
 [Desktop Entry]
 Name=Niri Workspaces
-Exec=cosmic-applets-niri %F
+Exec=niri-applet-workspaces %F
 Terminal=false
 Type=Application
 StartupNotify=true
-Icon=com.example.CosmicAppletTemplate
+Icon=com.niri.workspaces-symbolic
 Categories=COSMIC;Utility;
 Keywords=Folder;Manager;
 MimeType=inode/directory;

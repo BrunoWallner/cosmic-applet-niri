@@ -1,29 +1,23 @@
 name := 'cosmic-applets-niri'
-export APPID := 'com.niri.applets'
 
 rootdir := ''
 prefix := '/usr'
-flatpak-prefix := '/app'
 
 base-dir := absolute_path(clean(rootdir / prefix))
-flatpak-base-dir := absolute_path(clean(rootdir / flatpak-prefix))
 
 export INSTALL_DIR := base-dir / 'share'
 
 bin-src := 'target' / 'release' / name
 bin-dst := base-dir / 'bin' / name
-flatpak-bin-dst := flatpak-base-dir / 'bin' / name
 
-# desktop := APPID + '.desktop'
-# desktop-src := 'res' / desktop
 desktop-dst := clean(rootdir / prefix) / 'share' / 'applications'
 
-metainfo := APPID + '.metainfo.xml'
+metainfo :=  'com.niri.applets.metainfo.xml'
 metainfo-src := 'res' / metainfo
 metainfo-dst := clean(rootdir / prefix) / 'share' / 'metainfo' / metainfo
 
-icons-src := 'res' / 'icons' / 'hicolor'
-icons-dst := clean(rootdir / prefix) / 'share' / 'icons' / 'hicolor'
+# icons-src := 'res' / 'icons' / 'hicolor'
+icons-dst := clean(rootdir / prefix) / 'share' / 'icons' / 'hicolor' / 'scalable' / 'apps'
 
 # Default recipe which runs `just build-release`
 default: build-release
@@ -64,31 +58,28 @@ dev *args:
 run *args:
     env RUST_LOG=cosmic_tasks=info RUST_BACKTRACE=full cargo run --release {{args}}
 
+_install_icon id:
+    install -Dm0644 res/{{id}}-symbolic.svg {{icons-dst}}/{{id}}-symbolic.svg 
+
 _install_desktop id:
-    install -Dm0644 'res'/{{id}}'.desktop' {{desktop-dst}}/{{id}}'.desktop'
+    install -Dm0644 res/{{id}}.desktop {{desktop-dst}}/{{id}}.desktop
+
+_install_bin:
+    install -Dm0755 {{bin-src}} {{bin-dst}}
+
+_link_bin id:
+    ln -sf {{bin-dst}} {{base-dir}}/bin/{{id}}    
 
 # Installs files
-install: (_install_desktop 'com.niri.workspaces')
-    install -Dm0755 {{bin-src}} {{bin-dst}}
+install: (_install_bin) (_link_bin 'niri-applet-workspaces') (_install_desktop 'com.niri.workspaces') (_install_icon 'com.niri.workspaces')
     install -Dm0644 {{metainfo-src}} {{metainfo-dst}}
-
-# # Installs files
-# flatpak:
-#     install -Dm0755 {{bin-src}} {{flatpak-bin-dst}}
-#     # install -Dm0644 {{desktop-src}} {{desktop-dst}}
-#     install -Dm0644 {{metainfo-src}} {{metainfo-dst}}
-#     for size in `ls {{icons-src}}`; do \
-#         install -Dm0644 "{{icons-src}}/$size/apps/{{APPID}}.svg" "{{icons-dst}}/$size/apps/{{APPID}}.svg"; \
-#     done
 
 # Uninstalls installed files
 uninstall:
-    rm {{bin-dst}}
-    rm {{desktop-dst}}
-    rm {{metainfo-dst}}
-    for size in `ls {{icons-src}}`; do \
-        rm "{{icons-dst}}/$size/apps/{{APPID}}.svg"; \
-    done
+    rm {{icons-dst}}/{{"com.niri.workspaces"}}-symbolic.svg
+    rm -r {{bin-dst}}
+    rm -r {{desktop-dst}}
+    rm -r {{metainfo-dst}}
 
 # Vendor dependencies locally
 vendor:

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="64mm"
+   height="64mm"
+   viewBox="0 0 64 64"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.1 (93de688d07, 2025-03-30)"
+   sodipodi:docname="com.niri.workspaces.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.4069249"
+     inkscape:cx="211.05768"
+     inkscape:cy="142.09001"
+     inkscape:window-width="1888"
+     inkscape:window-height="1043"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <rect
+       x="1.336333"
+       y="0"
+       width="240.62987"
+       height="239.88886"
+       id="rect3" />
+    <rect
+       x="42.762655"
+       y="37.417323"
+       width="176.39595"
+       height="184.41395"
+       id="rect2" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline">
+    <path
+       id="rect1"
+       style="fill:#000000;stroke-width:0.120189"
+       d="M 11.999784 0 C 5.3517843 1.2533184e-15 0 5.3517843 0 11.999784 L 0 51.999927 C 1.2533184e-15 58.647927 5.3517843 64.000228 11.999784 64.000228 L 51.999927 64.000228 C 58.647927 64.000228 64.000228 58.647927 64.000228 51.999927 L 64.000228 11.999784 C 64.000228 5.3517843 58.647927 0 51.999927 0 L 11.999784 0 z M 18.999874 10.999845 L 44.999837 10.999845 C 49.431837 10.999845 52.999866 14.567874 52.999866 18.999874 L 52.999866 44.999837 C 52.999866 49.431837 49.431837 52.999866 44.999837 52.999866 L 18.999874 52.999866 C 14.567874 52.999866 10.999845 49.431837 10.999845 44.999837 L 10.999845 18.999874 C 10.999845 14.567874 14.567874 10.999845 18.999874 10.999845 z " />
+  </g>
+</svg>

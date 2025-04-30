@@ -2,9 +2,8 @@
 
 use cosmic::app::{Core, Task};
 use cosmic::applet::cosmic_panel_config::PanelAnchor;
-use cosmic::iced::window::Id;
 use cosmic::iced::{Length, Subscription};
-use cosmic::widget::{self, container};
+use cosmic::widget;
 use cosmic::{Application, Element};
 use niri_ipc::Workspace;
 use std::sync::mpsc;

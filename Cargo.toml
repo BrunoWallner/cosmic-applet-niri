@@ -13,7 +13,8 @@ tokio = "1.44.2"
 [dependencies.libcosmic]
 git = "https://github.com/pop-os/libcosmic.git"
 default-features = false
-rev = "1abd6d75786697b48e1d5922717febd0ebeb48ac"
+# rev = "1abd6d75786697b48e1d5922717febd0ebeb48ac"
+rev = "e5802b535bf9d6599b0ac90a9499e80c60c0284b"
 features = ["applet", "tokio", "wayland"]
 
 # Uncomment to test a locally-cloned libcosmic

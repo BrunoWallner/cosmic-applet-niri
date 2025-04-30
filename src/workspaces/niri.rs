@@ -1,5 +1,4 @@
-use std::sync::{Arc, Mutex};
-use std::{io, thread};
+use std::process;
 
 use cosmic::iced::futures::channel::mpsc::Sender;
 use cosmic::iced::futures::{self, SinkExt};
@@ -22,7 +21,14 @@ pub fn sub() -> impl Stream<Item = Message> {
 }
 
 fn listen(rx: mpsc::Receiver<Sender<Message>>) {
-    let socket = Socket::connect().unwrap();
+    let socket = match Socket::connect() {
+        Ok(s) => s,
+        Err(e) => {
+            eprintln!("{e}");
+            // not wasting any ram
+            process::exit(1);
+        }
+    };
     let mut event_stream = socket.send(Request::EventStream).unwrap().1;
 
     let mut output = rx.recv().unwrap();
